@@ -1,0 +1,18 @@
+{% extends 'shop/base.html' %}
+{% load staticfiles %}
+{% load tz %}
+
+{% block title_block %}Список товаров{% endblock %}
+
+{% block body_block %}
+    {% if product_list %}
+        <h2>Все товары</h2>
+        <div class="list-group">
+            {% for product in product_list %}
+                <div>{{ product.name }}</div>
+            {% endfor %}
+        </div>
+    {% else %}
+        Пока товаров нет
+    {% endif %}
+{% endblock %}
