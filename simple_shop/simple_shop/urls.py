@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from shop import views
+
 urlpatterns = [
+    url(r'^$', views.ProductIndexView.as_view(), name='index'),
     url(r'^shop/', include('shop.urls')),
     url(r'^admin/', admin.site.urls),
 ]
