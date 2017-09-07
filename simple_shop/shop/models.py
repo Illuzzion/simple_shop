@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class ProductCategory(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='Категория товара', unique=True)
     slug = models.SlugField(max_length=150)
 
@@ -16,7 +16,7 @@ class ProductCategory(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название товара', unique=True)
-    category = models.ForeignKey(ProductCategory)
+    category = models.ForeignKey(Category)
     slug = models.SlugField(max_length=150)
 
     class Meta:
