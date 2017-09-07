@@ -1,0 +1,11 @@
+div#catalog-items {
+    display: block;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+div.catalog-item {
+    width: 33.33333%;
+    float: left;
+    margin-bottom: 20px;
+}
