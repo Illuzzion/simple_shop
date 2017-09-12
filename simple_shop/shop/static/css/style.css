@@ -9,3 +9,7 @@ div.catalog-item {
     float: left;
     margin-bottom: 20px;
 }
+
+img.img-responsive {
+    max-width: 400px;
+}

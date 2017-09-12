@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^$', views.ProductIndexView.as_view(), name='index'),
     url(r'product/(?P<pk>[0-9]+)/', views.ProductDetailView.as_view(), name='product_details'),
     url(r'categories/$', views.CategoryIndexView.as_view(), name='category_list'),
-    url(r'category/(?P<slug>[\w\-]+)/$', views.CategoryDetailView.as_view(), name='category_detail')
+    url(r'category/(?P<slug>[-\w]+)/$', views.CategoryDetailView.as_view(), name='category_detail')
 ]

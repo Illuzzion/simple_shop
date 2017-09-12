@@ -8,14 +8,12 @@
     <h1>{{ product.name }}</h1>
     <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}"
          class="img-responsive">
-    <div>{{ product.category }}</div>
+    <div>Категория: <a href="{% url 'shop:category_detail' product.category.slug %}">{{ product.category }}</a></div>
 
-    <h2>
-        <a href="{{ product.category }}">{{ product.category }}</a>
-    </h2>
+
 
     <p class="price">
-        {{ product.price }} руб.
+        Цена: {{ product.price }} руб.
     </p>
     <div>{{ product.description | linebreaks }}</div>
 {% endblock %}

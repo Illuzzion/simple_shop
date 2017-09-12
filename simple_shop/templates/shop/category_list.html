@@ -7,6 +7,6 @@
 {% block body_block %}
     <h1>Список всех категорий</h1>
     {% for category in category_list %}
-        <p>{{ category.name }}</p>
+        <p><a href="{% url 'shop:category_detail' category.slug %}">{{ category.name }}</a></p>
     {% endfor %}
 {% endblock %}

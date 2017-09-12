@@ -9,19 +9,25 @@
     <link href="{% static "css/style.css" %}" rel="stylesheet">
 </head>
 <body>
-{% block header_block %}
-    <section id="header">
-        <div class="top container">Онлайн-Магазин</div>
-        <div class="top-bl">
-            <div class="container">
-                <div class="cart">Ваша корзина пуста</div>
-            </div>
+
+<div class="container">
+    {% block header_block %}
+        <div class="header clearfix">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="{% url 'shop:category_list' %}">Категории</a></li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Онлайн магазин</h3>
         </div>
-    </section>
-{% endblock %}
-{% block body_block %}
-    empty body
-{% endblock %}
+    {% endblock %}
+
+    {% block body_block %}
+        empty body
+    {% endblock %}
+</div>
+
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

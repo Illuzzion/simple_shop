@@ -5,6 +5,8 @@ class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='Категория товара', unique=True)
     slug = models.SlugField(max_length=150)
 
+    # TODO: добавить keywords, description, текстовое описание, картинку
+
     class Meta:
         verbose_name = 'Категория товара'
         verbose_name_plural = "Категории товаров"
@@ -18,7 +20,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, verbose_name="Категория")  # related_name='products'
 
     name = models.CharField(max_length=150, verbose_name='Название товара', unique=True, db_index=True)
-    slug = models.SlugField(max_length=150, db_index=True)
+    slug = models.SlugField(max_length=150, unique=True, db_index=True)
 
     description = models.TextField(blank=True, verbose_name='Описание товара')
     price = models.DecimalField(verbose_name='Цена', max_digits=10, decimal_places=2, default=0)
@@ -33,6 +35,7 @@ class Product(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = "Товары"
         ordering = ('-id',)  # порядок сортировки по умолчанию
+
         index_together = [
             ['id', 'slug']
         ]

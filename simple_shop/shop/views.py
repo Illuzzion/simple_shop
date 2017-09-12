@@ -20,8 +20,9 @@ class CategoryIndexView(generic.ListView):
 
 
 class CategoryDetailView(generic.DetailView):
+    model = Category
     template_name = 'shop/category_detail.html'
 
-    def get(self, request, *args, **kwargs):
-        category = Category.objects.get(slug=self.kwargs['slug'])
-        return self.render_to_response({'category': category})
+    # def get(self, request, *args, **kwargs):
+    #     category = Category.objects.get(slug=self.kwargs['slug'])
+    #     return self.render_to_response({'category': category})
