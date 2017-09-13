@@ -13,18 +13,18 @@ class Cart(object):
 
     # Добавление товара в корзину пользователя или обновление количества товара
     def add(self, product, quantity=1, update_quantity=False):
-        # product_id = str(product.id)
-        #
-        # if product_id not in self.cart:
-        #     self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
-        #
-        # if update_quantity:
-        #     self.cart[product_id]['quantity'] = quantity
-        # else:
-        #     self.cart[product_id]['quantity'] += quantity
-        default_value = {'quantity': 0, 'price': str(product.price)}
-        product = self.cart.get(str(product.id), default_value)
-        product['quantity'] = quantity if update_quantity else product['quantity'] + quantity
+        product_id = str(product.id)
+
+        if product_id not in self.cart:
+            self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
+
+        if update_quantity:
+            self.cart[product_id]['quantity'] = quantity
+        else:
+            self.cart[product_id]['quantity'] += quantity
+        # default_value = {'quantity': 0, 'price': str(product.price)}
+        # product = self.cart.get(str(product.id), default_value)
+        # product['quantity'] = quantity if update_quantity else product['quantity'] + quantity
 
         self.save()
 
