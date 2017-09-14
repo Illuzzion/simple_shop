@@ -22,8 +22,9 @@ from . import settings
 
 urlpatterns = [
     url(r'^$', views.ProductIndexView.as_view(), name='index'),
-    url(r'^shop/', include('shop.urls')),
+    url(r'^shop/', include('shop.urls', namespace='shop')),
     url(r'^cart/', include('cart.urls', namespace='cart')),
+    url(r'^order/', include('orders.urls', namespace='orders')),
     url(r'^admin/', admin.site.urls),
 ]
 
