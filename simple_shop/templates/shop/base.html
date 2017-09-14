@@ -16,7 +16,17 @@
             <nav>
                 <ul class="nav nav-pills pull-right">
                     <li><a href="/">Главная</a></li>
-                    <li><a href="{% url 'cart:CartDetail' %}">Корзина</a></li>
+                    <li>
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                <a href="{% url "cart:CartDetail" %}">
+                                    {{ cart.get_total_price }} руб.
+                                </a>
+                            {% else %}
+                                <a href="{% url "cart:CartDetail" %}">Корзина пуста</a>
+                            {% endif %}
+                        {% endwith %}
+                    </li>
                 </ul>
             </nav>
             <h3 class="text-muted">Онлайн магазин</h3>

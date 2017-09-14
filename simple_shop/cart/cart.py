@@ -22,10 +22,10 @@ class Cart(object):
         :param update_quantity: Флаг обновления количества
         :return: None
         """
-        product_dict = self.cart.get(product.id, {'price': str(product.price), 'quantity': 0})
-        product_dict['quantity'] = quantity if update_quantity else product_dict['quantity'] + quantity
-        # когда сохраняется сессия, все _ключи_ типа int преобразуются в строки
+        # когда сериализуется сессия(JSONSerializer), все _ключи_ типа int преобразуются в строки
         # https://djbook.ru/rel1.9/topics/http/sessions.html#django.contrib.sessions.serializers.JSONSerializer
+        product_dict = self.cart.get(str(product.id), {'price': str(product.price), 'quantity': 0})
+        product_dict['quantity'] = quantity if update_quantity else product_dict['quantity'] + quantity
         self.cart.update({product.id: product_dict})
         self.save()
 
@@ -49,21 +49,27 @@ class Cart(object):
             del self.cart[str(product.id)]
             self.save()
 
-    # Итерация по товарам
     def __iter__(self):
-        # product_ids = self.cart.keys()
+        """
+        Итерация по товарам корзины.
+        Нужно для шаблона cart/details.html
+
+        :return:
+        """
         products = Product.objects.filter(id__in=self.cart.keys())
 
         for product in products:
-            self.cart[str(product.id)]['product'] = product
+            product_id = str(product.id)
+            self.cart[product_id]['product'] = product
+            self.cart[product_id]['total_price'] = product.price * self.cart[product_id]['quantity']
+            yield self.cart[product_id]
 
-        for item in self.cart.values():
-            item['price'] = Decimal(item['price'])
-            item['total_price'] = item['price'] * item['quantity']
-            yield item
-
-    # Количество товаров
     def __len__(self):
+        """
+        Количество товаров в корзине
+
+        :return: int
+        """
         return sum(item['quantity'] for item in self.cart.values())
 
     def get_total_price(self):

@@ -9,7 +9,7 @@
         <thead>
         <tr>
             <th>Изображение</th>
-            <th>Продукт</th>
+            <th>Товар</th>
             <th>Количество</th>
             <th>Удалить</th>
             <th>Полная цена</th>
@@ -27,7 +27,14 @@
                         </a>
                     </td>
                     <td>{{ product.name }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td>
+                        <form action="{% url "cart:CartAdd" product.id %}" method="post" class="add">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            {% csrf_token %}
+                            <input type="submit" value="Обновить">
+                        </form>
+                    </td>
                     <td><a href="{% url "cart:CartRemove" product.id %}">Удалить</a></td>
                     <td class="num">{{ item.price }} руб.</td>
                     <td class="num">{{ item.total_price }} руб.</td>
@@ -43,6 +50,6 @@
     </table>
     <p class="text-right">
         <a href="{% url "shop:index" %}" class="btn">Продолжить покупки</a>
-        <a href="#">Оформить заказ</a>
+        <a href="{% url "orders:OrderCreate" %}" class="btn">Оформить заказ</a>
     </p>
 {% endblock %}
