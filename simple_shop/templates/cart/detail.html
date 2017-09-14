@@ -1,12 +1,10 @@
 {% extends "shop/base.html" %}
 {% load staticfiles %}
 
-{% block title_block %}
-    Ваша корзина товаров
-{% endblock %}
+{% block title_block %}Корзина товаров{% endblock %}
 
 {% block body_block %}
-    <h1>Ваша корзина товаров</h1>
+    <h1>Корзина товаров</h1>
     <table class="cart">
         <thead>
         <tr>
@@ -37,14 +35,14 @@
             {% endwith %}
         {% endfor %}
         <tr class="total">
-            <td>Total</td>
+            <td>Итого:</td>
             <td colspan="4"></td>
             <td class="num">{{ cart.get_total_price }} руб.</td>
         </tr>
         </tbody>
     </table>
     <p class="text-right">
-        <a href="{% url "shop:index" %}" class="btn">Продолжить Шопинг</a>
+        <a href="{% url "shop:index" %}" class="btn">Продолжить покупки</a>
         <a href="#">Оформить заказ</a>
     </p>
 {% endblock %}

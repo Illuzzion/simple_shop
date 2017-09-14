@@ -13,3 +13,21 @@ div.catalog-item {
 img.img-responsive {
     max-width: 400px;
 }
+
+.cart img {
+    max-width: 200px;
+}
+
+table.cart {
+    width: 100%;
+    margin: 10px 0;
+}
+
+th, td {
+    padding: 5px;
+}
+
+thead {
+    /*background: #2a6496;*/
+    /*color: white;*/
+}
