@@ -123,5 +123,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-# cart app session id
+# session id, for cart application
 CART_SESSION_ID = 'cart'
+
+# Email
+# с этим бекендом наши сообщения не будут рассылаться пользователям, а будут отображены в консоли
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
