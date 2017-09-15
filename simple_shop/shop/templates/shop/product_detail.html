@@ -1,4 +1,4 @@
-{% extends 'shop/base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 {% load tz %}
 
@@ -15,7 +15,9 @@
 
     <div class="col-md-6">
         <p class="price">
-            Цена: {{ product.price }} руб.
+            {% for price_data in product.prices.all %}
+                Цена: {{ price_data.price }} руб. за {{ price_data.package_quantity }} {{ price_data.measure }}
+            {% endfor %}
         </p>
 
         <form action="{% url "cart:CartAdd" product.id %}" method="post">

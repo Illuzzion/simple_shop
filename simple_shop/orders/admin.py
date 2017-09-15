@@ -12,6 +12,7 @@ from orders.models import OrderItem, Order
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
     raw_id_field = ['product']
+    extra = 0
 
 
 def export_to_csv(modeladmin, request, queryset):

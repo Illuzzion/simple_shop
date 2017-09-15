@@ -1,21 +1,26 @@
 from cart.cart import Cart
 from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, get_object_or_404
+from django.views import generic
 
 from .forms import OrderCreateForm
 from .models import OrderItem, Order
 from .tasks import OrderCreated
 
 
-def OrderCreate(request):
+# TODO: перевести всё на CBV
+
+def order_create(request):
     cart = Cart(request)
+
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
 
         if form.is_valid():
             order = form.save()
             for item in cart:
-                OrderItem.objects.create(order=order, product=item['product'],
+                OrderItem.objects.create(order=order,
+                                         product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
             cart.clear()
@@ -27,6 +32,14 @@ def OrderCreate(request):
 
     form = OrderCreateForm()
     return render(request, 'orders/order/create.html', {'cart': cart, 'form': form})
+
+
+# class OrderCreateView(generic.CreateView):
+#     form_class = OrderCreateForm
+#     template_name = 'orders/order/create.html'
+#
+#     def get_success_url(self):
+#         print('get_success_url')
 
 
 @staff_member_required

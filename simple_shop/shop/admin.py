@@ -1,14 +1,23 @@
 from django.contrib import admin
 
-from .models import Product, Category
+from .models import Product, Category, ProductAdditionalImage, ProductPrice, ProductMeasure
 
 
-# Register your models here.
+class ProductImageInline(admin.TabularInline):
+    model = ProductAdditionalImage
+    extra = 0
+
+
+class ProductPriceInline(admin.TabularInline):
+    model = ProductPrice
+    extra = 0
+
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category', 'price', 'created', 'updated']
+    list_display = ['name', 'category', 'created', 'updated']
     prepopulated_fields = {'slug': ('name',)}
-    list_editable = ['price']
     list_filter = ('available',)
+    inlines = [ProductImageInline, ProductPriceInline]
 
 
 class ProductCategoryAdmin(admin.ModelAdmin):
@@ -17,3 +26,4 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category, ProductCategoryAdmin)
+admin.site.register(ProductMeasure)

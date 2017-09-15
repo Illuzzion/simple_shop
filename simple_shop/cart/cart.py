@@ -24,7 +24,10 @@ class Cart(object):
         """
         # когда сериализуется сессия(JSONSerializer), все _ключи_ типа int преобразуются в строки
         # https://djbook.ru/rel1.9/topics/http/sessions.html#django.contrib.sessions.serializers.JSONSerializer
-        product_dict = self.cart.get(str(product.id), {'price': str(product.price), 'quantity': 0})
+        all_prices = product.prices.all()
+        price = str(all_prices[0].price)
+
+        product_dict = self.cart.get(str(product.id), {'price': price, 'quantity': 0})
         product_dict['quantity'] = quantity if update_quantity else product_dict['quantity'] + quantity
         self.cart.update({product.id: product_dict})
         self.save()
@@ -60,8 +63,9 @@ class Cart(object):
 
         for product in products:
             product_id = str(product.id)
+            product_price = product.prices.all()[0].price
             self.cart[product_id]['product'] = product
-            self.cart[product_id]['total_price'] = product.price * self.cart[product_id]['quantity']
+            self.cart[product_id]['total_price'] = product_price * self.cart[product_id]['quantity']
             yield self.cart[product_id]
 
     def __len__(self):

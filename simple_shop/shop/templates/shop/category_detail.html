@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load tz %}
+
+{% block title_block %}Категория {{ category.name }}{% endblock %}
+
+{% block body_block %}
+    <h1>Категория "{{ category.name }}"</h1>
+
+    {% for product in category.products.all %}
+        <div class="catalog-item">
+            <a href="{% url 'shop:product_details' product.id %}">
+                <img class="img-responsive" src="
+                        {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}">
+                <div class="item-title">{{ product.name }}</div>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

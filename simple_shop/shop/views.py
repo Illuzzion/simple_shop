@@ -1,4 +1,3 @@
-# Create your views here.
 from django.views import generic
 
 from cart.forms import CartAddProductForm
