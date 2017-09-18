@@ -1,4 +1,5 @@
 from categories.models import Category
+from ckeditor.fields import RichTextField
 from django.db import models
 
 
@@ -8,8 +9,8 @@ class Product(models.Model):
 
     category = models.ForeignKey(Category, verbose_name="Категория", related_name='products')
 
-    short_description = models.TextField(blank=True, verbose_name='Краткое описание')
-    description = models.TextField(blank=True, verbose_name='Полное описание')
+    short_description = RichTextField(blank=True, verbose_name='Краткое описание')
+    description = RichTextField(blank=True, verbose_name='Полное описание')
 
     image = models.ImageField(upload_to='products/', blank=True, verbose_name='Главная картинка')
     weight = models.IntegerField(default=0, blank=True, verbose_name='Вес товара')

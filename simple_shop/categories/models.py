@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
@@ -9,7 +10,7 @@ class Category(MPTTModel):
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,
                             verbose_name='Родительская категория')
 
-    description = models.TextField(verbose_name='Описание категории', blank=True)
+    description = RichTextField(verbose_name='Описание категории', blank=True)
     image = models.ImageField(upload_to='categories/', verbose_name='Изображение для категории', blank=True)
     sort_weight = models.PositiveIntegerField(default=0, verbose_name='Вес для сортировки')
 

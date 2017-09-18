@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'categories',
-    'mptt'
+    'mptt',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,13 @@ CART_SESSION_ID = 'cart'
 # Email
 # с этим бекендом наши сообщения не будут рассылаться пользователям, а будут отображены в консоли
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+        # 'toolbar': [['Source', 'Link', 'Unlink', 'SpecialChar', 'Image', 'CodeSnippet']],
+        # 'height': 400,
+        # 'width': 900,
+        # 'removePlugins': 'stylesheetparser',
+        # 'extraPlugins': 'codesnippet',
+    # },
+# }
