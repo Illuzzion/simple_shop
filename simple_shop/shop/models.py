@@ -21,6 +21,15 @@ class Product(models.Model):
     created = models.DateTimeField(verbose_name="Дата добавления товара", auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения товара')
 
+    def showimg(self):
+        if self.image:
+            return "<img src='{path}' style='max-height:100px;'>".format(path=self.image.url)
+        else:
+            return "no image"
+
+    showimg.short_description = 'Изображение'
+    showimg.allow_tags = True
+
     class Meta:
         verbose_name = 'Товар'
         verbose_name_plural = "Товары"

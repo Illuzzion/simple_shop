@@ -6,7 +6,7 @@
 
 {% block body_block %}
     <h1>{{ product.name }}</h1>
-    <div>Категория: <a href="{% url 'shop:category_detail' product.category.slug %}">{{ product.category }}</a></div>
+    <div>Категория: <a href="{% url 'categories:category_detail' product.category.slug %}">{{ product.category }}</a></div>
 
     <div class="col-md-6">
         <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}"
