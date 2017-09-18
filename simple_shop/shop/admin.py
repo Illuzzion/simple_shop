@@ -13,6 +13,7 @@ class ProductPriceInline(admin.TabularInline):
     extra = 0
 
 
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'category', 'created', 'updated']
     prepopulated_fields = {'slug': ('name',)}
@@ -20,10 +21,9 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageInline, ProductPriceInline]
 
 
-class ProductCategoryAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('name',)}
+# @admin.register(Category)
+# class ProductCategoryAdmin(admin.ModelAdmin):
+#     prepopulated_fields = {'slug': ('name',)}
 
 
-admin.site.register(Product, ProductAdmin)
-admin.site.register(Category, ProductCategoryAdmin)
 admin.site.register(ProductMeasure)

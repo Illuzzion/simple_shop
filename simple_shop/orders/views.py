@@ -34,12 +34,15 @@ def order_create(request):
     return render(request, 'orders/order/create.html', {'cart': cart, 'form': form})
 
 
-# class OrderCreateView(generic.CreateView):
-#     form_class = OrderCreateForm
-#     template_name = 'orders/order/create.html'
-#
-#     def get_success_url(self):
-#         print('get_success_url')
+class OrderCreateView(generic.ListView, generic.CreateView):
+    form_class = OrderCreateForm
+    template_name = 'orders/order/create.html'
+
+    def get(self, request, *args, **kwargs):
+        pass
+
+    def get_success_url(self):
+        print('get_success_url')
 
 
 @staff_member_required
