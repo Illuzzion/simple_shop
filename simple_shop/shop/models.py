@@ -76,7 +76,6 @@ class ProductPrice(models.Model):
     description = models.CharField(max_length=100, verbose_name='Описание цены', blank=True)
 
     package_quantity = models.PositiveSmallIntegerField(default=1, verbose_name='Количество')
-    # measure = models.CharField(max_length=50, verbose_name='Единица измерения')
     measure = models.ForeignKey(ProductMeasure, verbose_name='Единица измерения')
 
     price = models.DecimalField(verbose_name='Цена', max_digits=10, decimal_places=2, default=0)

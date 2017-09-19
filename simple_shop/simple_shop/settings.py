@@ -67,7 +67,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # всегда передаём содержимое корзины в шаблон
-                'cart.context_processor.cart'
+                'cart.context_processor.cart',
+                # передаём все категории
+                'categories.context_processor.categories'
             ],
         },
     },
@@ -135,10 +137,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # CKEDITOR_CONFIGS = {
 #     'default': {
-        # 'toolbar': [['Source', 'Link', 'Unlink', 'SpecialChar', 'Image', 'CodeSnippet']],
-        # 'height': 400,
-        # 'width': 900,
-        # 'removePlugins': 'stylesheetparser',
-        # 'extraPlugins': 'codesnippet',
-    # },
+# 'toolbar': [['Source', 'Link', 'Unlink', 'SpecialChar', 'Image', 'CodeSnippet']],
+# 'height': 400,
+# 'width': 900,
+# 'removePlugins': 'stylesheetparser',
+# 'extraPlugins': 'codesnippet',
+# },
 # }
