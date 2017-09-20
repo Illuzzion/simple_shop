@@ -17,7 +17,7 @@ class ProductPriceInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'category', 'showimg', 'updated', 'available']
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ('available', 'category')
+    list_filter = ('available',)
     inlines = [ProductImageInline, ProductPriceInline]
 
 

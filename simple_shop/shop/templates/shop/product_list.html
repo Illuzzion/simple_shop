@@ -8,8 +8,6 @@
 {% block body_block %}
     {% if product_list %}
         <h2>Все товары</h2>
-        <div id="col-md-8">
-
             {% for product in product_list %}
                 <div class="catalog-item">
                     <a href="{% url 'shop:product_details' product.id %}">
@@ -19,25 +17,7 @@
                     </a>
                 </div>
             {% endfor %}
-        <div style="clear: both"></div>
-        </div>
-        <div class="col-md-3">
-        123
-        </div>
-
     {% else %}
         Пока товаров нет
     {% endif %}
-{#    <ul class="root">#}
-{#        {% recursetree nodes %}#}
-{#            <li>#}
-{#                {{ node.name }}#}
-{#                {% if not node.is_leaf_node %}#}
-{#                    <ul class="children">#}
-{#                        {{ children }}#}
-{#                    </ul>#}
-{#                {% endif %}#}
-{#            </li>#}
-{#        {% endrecursetree %}#}
-{#    </ul>#}
 {% endblock %}
