@@ -13,9 +13,9 @@
 </head>
 <body>
 
-<div class="container">
-    {% block header_block %}
 
+{% block header_block %}
+    <div class="container">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/" title="Перейти на главную страницу">Онлайн магазин</a>
@@ -43,22 +43,26 @@
                 {% endwith %}
             </div>
         </nav>
-        {#            <h3 class="text-muted">Онлайн магазин</h3>#}
 
+    </div>
+{% endblock %}
 
-    {% endblock %}
-
+<div class="container">
     <div class="row">
-        {% block categories_block %}
+        <div class="col-sm-3">
+            {% block categories_block %}
+                empty categories_block
+            {% endblock %}
+        </div>
 
-            <div class="container">empty categories_block</div>
-        {% endblock %}
-
-        {% block body_block %}
-            <div class="container">empty body_block</div>
-        {% endblock %}
+        <div class="col-sm-9">
+            {% block body_block %}
+                empty body_block
+            {% endblock %}
+        </div>
     </div>
 </div>
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
