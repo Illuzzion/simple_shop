@@ -6,18 +6,23 @@
 {% block title_block %}Список товаров{% endblock %}
 
 {% block body_block %}
-    {% if product_list %}
-        <h2>Все товары</h2>
+    <div class="container">
+        {% if product_list %}
+            <h2>Все товары</h2>
+            <div class="row">
             {% for product in product_list %}
-                <div class="catalog-item">
-                    <a href="{% url 'shop:product_details' product.id %}">
-                        <img class="img-responsive" src="
-                                {% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}">
-                        <div class="item-title">{{ product.name }}</div>
-                    </a>
-                </div>
+
+                    <div class="col-md-3">
+                        <a href="{% url 'shop:product_details' product.id %}">
+                            <img class="img-responsive" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}">
+                            <div class="item-title">{{ product.name }}</div>
+                        </a>
+                    </div>
+
             {% endfor %}
-    {% else %}
-        Пока товаров нет
-    {% endif %}
+            </div>
+        {% else %}
+            Пока товаров нет
+        {% endif %}
+    </div>
 {% endblock %}

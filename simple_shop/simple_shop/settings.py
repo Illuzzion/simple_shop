@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'orders',
     'categories',
     'mptt',
+    'django_mptt_admin',
     'ckeditor'
 ]
 
