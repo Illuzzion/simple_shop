@@ -12,7 +12,7 @@
             <div class="row">
             {% for product in product_list %}
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <a href="{% url 'shop:product_details' product.id %}">
                             <img class="img-responsive" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}">
                             <div class="item-title">{{ product.name }}</div>

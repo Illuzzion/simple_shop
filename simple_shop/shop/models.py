@@ -3,6 +3,11 @@ from ckeditor.fields import RichTextField
 from django.db import models
 
 
+# class AvailableManager(models.Manager):
+#     def get_queryset(self):
+#         return super(AvailableManager, self).get_queryset().filter(availability=True)
+
+
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Название товара', unique=True, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True)
@@ -21,6 +26,14 @@ class Product(models.Model):
 
     created = models.DateTimeField(verbose_name="Дата добавления товара", auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения товара')
+
+    # TODO: нужно добавить привязку товара к юзеру
+    # owner = models.ForeignKey(User, related_name='products')
+
+    # поле доступное через менеджер
+    # https://djbook.ru/rel1.9/topics/db/managers.html
+    # objects = models.Manager()
+    # availabled = AvailableManager()
 
     def showimg(self):
         if self.image:
