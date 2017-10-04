@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'categories',
+    'userprofile',
+
     'mptt',
     'django_mptt_admin',
     'ckeditor'

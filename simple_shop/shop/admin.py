@@ -19,6 +19,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_filter = ('available',)
     inlines = [ProductImageInline, ProductPriceInline]
+    search_fields = ('name',)
 
 
 admin.site.register(ProductMeasure)

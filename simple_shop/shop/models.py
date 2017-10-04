@@ -1,5 +1,6 @@
 from categories.models import Category
 from ckeditor.fields import RichTextField
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -27,8 +28,7 @@ class Product(models.Model):
     created = models.DateTimeField(verbose_name="Дата добавления товара", auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения товара')
 
-    # TODO: нужно добавить привязку товара к юзеру
-    # owner = models.ForeignKey(User, related_name='products')
+    owner = models.ForeignKey(User, related_name='products', verbose_name='Товар добавил')
 
     # поле доступное через менеджер
     # https://djbook.ru/rel1.9/topics/db/managers.html
