@@ -6,28 +6,31 @@
 
 {% block body_block %}
     <h1>{{ product.name }}</h1>
-    <div>Категория: <a href="{% url 'categories:category_detail' product.category.slug %}">{{ product.category }}</a></div>
-
-    <div class="col-md-6">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}"
-             class="img-responsive">
+    <div>Категория: <a href="{% url 'categories:category_detail' product.category.slug %}">{{ product.category }}</a>
     </div>
 
-    <div class="col-md-6">
-        <p class="price">
-            {% for price_data in product.prices.all %}
-                Цена: {{ price_data.price }} руб. за {{ price_data.package_quantity }} {{ price_data.measure }}
-            {% endfor %}
-        </p>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no-image.png" %}{% endif %}"
+                 class="img-responsive">
+        </div>
 
-        <form action="{% url "cart:CartAdd" product.id %}" method="post">
-            {{ cart_product_form.as_p }}
-            {% csrf_token %}
-            <input type="submit" value="Добавить в корзину">
-        </form>
+        <div class="col-md-6">
+            <p class="price">
+                {% for price_data in product.prices.all %}
+                    Цена: <strong>{{ price_data.price }}</strong> руб. за {{ price_data.package_quantity }} {{ price_data.measure }}
+                {% endfor %}
+            </p>
+
+            <form action="{% url "cart:CartAdd" product.id %}" method="post">
+                {{ cart_product_form.as_p }}
+                {% csrf_token %}
+                <input type="submit" value="Добавить в корзину" class="btn btn-info">
+            </form>
+        </div>
     </div>
-
     <div class="col-md-12">
         <div>{% autoescape off %}{{ product.description }}{% endautoescape %}</div>
     </div>
+
 {% endblock %}

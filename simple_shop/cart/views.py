@@ -24,6 +24,7 @@ def CartAdd(request, product_id):
         return render(request, 'shop/product_detail.html', {'cart_product_form': form, 'product': product})
 
 
+# TODO: переделать на CBV
 class CartAddCBV(generic.RedirectView):
     pass
 
