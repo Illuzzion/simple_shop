@@ -5,7 +5,7 @@ from django.views import generic
 
 from .forms import OrderCreateForm
 from .models import OrderItem, Order
-from .tasks import OrderCreated
+# from .tasks import OrderCreated
 
 
 # TODO: перевести всё на CBV

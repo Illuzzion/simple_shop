@@ -13,7 +13,7 @@ class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Название товара', unique=True, db_index=True)
     slug = models.SlugField(max_length=150, unique=True, db_index=True)
 
-    category = models.ForeignKey(Category, verbose_name="Категория", related_name='products')
+    category = models.ForeignKey(Category, verbose_name="Категория", related_name='products', on_delete=models.CASCADE)
     article = models.CharField(max_length=50, blank=True, verbose_name='Артикул')
 
     short_description = RichTextField(blank=True, verbose_name='Краткое описание')
@@ -28,7 +28,7 @@ class Product(models.Model):
     created = models.DateTimeField(verbose_name="Дата добавления товара", auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения товара')
 
-    owner = models.ForeignKey(User, related_name='products', verbose_name='Товар добавил')
+    owner = models.ForeignKey(User, related_name='products', verbose_name='Товар добавил', on_delete=models.CASCADE)
 
     # поле доступное через менеджер
     # https://djbook.ru/rel1.9/topics/db/managers.html
@@ -58,7 +58,7 @@ class Product(models.Model):
 
 
 class ProductAdditionalImage(models.Model):
-    product = models.ForeignKey(Product, verbose_name='Товар', related_name='ad_images')
+    product = models.ForeignKey(Product, verbose_name='Товар', related_name='ad_images', on_delete=models.CASCADE)
 
     image = models.ImageField(upload_to='products/', blank=True, verbose_name='Дополнительная картинка товара')
     alt = models.CharField(max_length=100, blank=True, verbose_name='Alt текст изображения')
@@ -84,12 +84,12 @@ class ProductMeasure(models.Model):
 
 
 class ProductPrice(models.Model):
-    product = models.ForeignKey(Product, verbose_name='Цена', related_name='prices')
+    product = models.ForeignKey(Product, verbose_name='Цена', related_name='prices', on_delete=models.CASCADE)
 
     description = models.CharField(max_length=100, verbose_name='Описание цены', blank=True)
 
     package_quantity = models.PositiveSmallIntegerField(default=1, verbose_name='Количество')
-    measure = models.ForeignKey(ProductMeasure, verbose_name='Единица измерения')
+    measure = models.ForeignKey(ProductMeasure, verbose_name='Единица измерения', on_delete=models.CASCADE)
 
     price = models.DecimalField(verbose_name='Цена', max_digits=10, decimal_places=2, default=0)
 

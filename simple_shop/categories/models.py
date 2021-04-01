@@ -8,7 +8,8 @@ class Category(MPTTModel):
     name = models.CharField(max_length=150, verbose_name='Название категории', unique=True)
     slug = models.SlugField(max_length=150, unique=True)
     parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True,
-                            verbose_name='Родительская категория')
+                            verbose_name='Родительская категория',
+                            on_delete=models.CASCADE)
 
     description = RichTextField(verbose_name='Описание категории', blank=True)
     image = models.ImageField(upload_to='categories/', verbose_name='Изображение для категории', blank=True)
